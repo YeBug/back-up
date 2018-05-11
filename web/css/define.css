@@ -1,0 +1,9 @@
+.blue-white{
+    background-color: #3a34f8;
+    color: white;
+}
+.bg-img{
+    background-image: url(../images/2.jpg);
+    background-repeat: no-repeat;
+    background-position: right top;
+}

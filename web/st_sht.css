@@ -1,0 +1,69 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+body{
+    background-color: rgb(243,243,243);
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+#header{
+    background-color: rgb(255,255,255);
+    width: 100%;
+    height: 50px;
+    box-shadow:0 0 2px 1px #dfe1e5;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+}
+
+#logo{
+    width: 66px;
+    height: 30px;
+    position: absolute;
+    left: 130px;
+    top: 13px;
+}
+
+#navi{
+    width: 250px;
+    height: 30px;
+    font-size: 15px;
+    position: absolute;
+    left: 208px;
+    top: 16px;
+}
+#navi li{
+    display: inline;
+    padding: 3px 12px;
+}
+#navi a{
+    color: #8590a6;
+}
+#navi a:hover{
+    color: #175199;
+}
+#navi a.selected,#navi a.selected:hover{
+    color: black;
+}
+
+#search{
+    width: 420px;
+    height: 36px;
+    position: absolute;
+    left: 400px;
+    top: 8px;
+}
+#search input{
+    width: 320px;
+    height: 23px;
+    padding: 3px;
+    background: rgb(247,248,241) url(images/header_search.jpg) no-repeat right;
+}

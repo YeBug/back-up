@@ -1,0 +1,478 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+body{
+    background-color: rgb(243,243,243);
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+/*处理header部分*/
+#header{
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 52px;
+    box-shadow: 0 0 2px 1px rgb(223, 225, 229);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#logo{
+    width: 66px;
+    height: 30px;
+    position: absolute;
+    left: 129px;
+    top: 13px;
+}
+
+#navigate{
+    width: 250px;
+    height: 30px;
+    font-size: 15px;
+    position: absolute;
+    left: 206px;
+    top: 16px;
+}
+
+#navigate li{
+    display: inline;
+    padding: 3px 13px;
+}
+
+#navigate a{
+    color: rgb(133, 144, 166);
+}
+
+#navigate a:hover{
+    color: rgb(23, 81, 153);
+}
+
+#navigate a.selected, #navigate a.selected:hover{
+    color: black;
+}
+
+#searchbar{
+    width: 420px;
+    height: 36px;
+    position: absolute;
+    left: 400px;
+    top: 8px;
+}
+
+#searchbar input{
+    width: 320px;
+    height: 23px;
+    padding: 4px;
+    background: rgb(247,248,250) url(images/header_search.jpg) no-repeat right;
+    border: 0.8px solid rgb(231, 234, 241);
+    border-radius: 4px;
+}
+
+input::-webkit-input-placeholder{
+    color: rgb(133, 144, 166);
+    font-size: 14px;
+    text-indent: 5px;
+}
+input:-ms-input-placeholder{
+    　　color: rgb(133, 144, 166);
+    font-size: 14px;
+    text-indent: 5px;
+}
+input:-moz-placeholder{
+    　　color: rgb(133, 144, 166);
+    font-size: 14px;
+    text-indent: 5px;
+}
+input::-moz-placeholder{
+    　　color: rgb(133, 144, 166);
+    font-size: 14px;
+    text-indent: 5px;
+}
+
+
+#searchbar button{
+    width: 56px;
+    height: 33px;
+    background-color: rgb(15, 136, 235);
+    color: white;
+    border-radius: 3px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#searchbar button:hover{
+    background-color: rgb(45, 132, 204);
+}
+
+
+#userinfo{
+    width: 200px;
+    height: 36px;
+    position: absolute;
+    left: 960px;
+    top: 10px;
+}
+
+#userinfo img{
+    padding: 2px 19px;
+}
+
+/*处理maincolumn部分：card和cardList*/
+#maincolumn{
+    width: 694px;
+    top: 54px;
+    left: 132px;
+    position: absolute;
+}
+
+/*card部分*/
+#card{
+    background: white;
+    margin-top: 10px;
+    width: 100%;
+    height: 59px;
+    box-shadow: 0 0 2px 1px rgb(223,225,229);
+}
+
+#card li{
+    display: inline;
+    float: left;
+    padding-top: 18px;
+    padding-left: 20px;
+    margin-right: 19px;
+}
+
+#card li a img{
+    padding-right: 8px;
+    padding-top: 3px;
+}
+
+#card li a:hover{
+    color:rgb(23, 81, 153);
+}
+
+#card li.special{
+    padding-top: 18px;
+    padding-left: 228px;
+}
+
+#card li.special a{
+    color: rgb(133, 144, 166);
+}
+
+#card li.special a:hover{
+    color: rgb(23, 81, 153);
+}
+
+/*cardList部分。处理一个list就可以推广到所有list上*/
+/*一个list分为header，content和footer三个部分*/
+#cardList{
+    width: 100%;
+}
+
+#cardList li{
+    background: white;
+    margin-top: 10px;
+    box-shadow: 0 0 2px 1px rgb(223,225,229);
+    list-style: none;
+    position: relative;
+    width: 694px;
+    height: 287px;
+}
+
+#cardList li.noimage{
+    height: 273px;
+}
+
+/*listHeader*/
+div.listTopic{
+    color: rgb(133, 144, 166);
+    font-size: 15px;
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+
+div.listTopic a{
+    color: rgb(133, 144, 166);
+    font-size: 15px;
+}
+
+div.listUserinfo{
+    position: absolute;
+    top: 47px;
+    left: 20px;
+}
+
+div.listUserinfo a{
+    font-size: 15px;
+    display: block;
+}
+
+a.listUserlogo{
+    line-height: 0;
+    width: 24px;
+    height: 24px;
+    float: left;
+}
+
+a.listUsername{
+    font-weight: bold;
+    float: left;
+    margin-left: 11px;
+    margin-top: 2px;
+}
+
+div.userIntro{
+    font-family: Microsoft JhengHei;
+    font-size: 13px;
+    float: left;
+    margin-left: 7px;
+    margin-top: 5px;
+}
+
+/*listContent*/
+div.listContent{
+    position: absolute;
+    top: 81px;
+    left: 20px;
+}
+
+div.listTitle{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+div.listTitle a:hover{
+    color: rgb(23, 81, 153);
+}
+
+div.listArticle{
+    width: 656px;
+    line-height: 1.67em;
+    font-size: 15px;
+    margin-top: 13px;
+}
+
+li.noimage div.listArticle{
+    margin-top: 9px ;
+}
+
+div.listArticle div.image{
+    float: left;
+    width: 192px;
+    height: 106px;
+    clear: both;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}
+
+div.listArticle a{
+    color: rgb(23, 81, 153);
+}
+
+div.listArticle div:hover{
+    color: rgb(133, 144, 166);
+    cursor: pointer;
+}
+
+div.listArticle a:hover{
+    color: rgb(133, 144, 166);
+}
+
+/*listFooter*/
+div.listFooter{
+    position: absolute;
+    top: 240px;
+    left: 20px;
+}
+
+li.noimage div.listFooter{
+    top: 221px;
+}
+
+div.listFooter span{
+    cursor: pointer;
+    color: rgb(133, 144, 166);
+    font-size: 14px;
+    margin-left: 22px;
+}
+
+div.listFooter span:hover{
+    color: rgb(23, 81, 153);
+}
+
+div.listFooter span.up, div.listFooter span.down{
+    background-color: rgb(235, 243, 251);
+    color: rgb(15, 136, 235);
+}
+
+div.listFooter span.up:hover,div.listFooter span.down:hover{
+    background-color: rgb(243, 243, 243);
+}
+
+div.listFooter span.up{
+    display: inline-block;
+    width: 68px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    margin-left: 0px;
+    border-radius: 3px;
+}
+
+div.listFooter span.down{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    margin-left: -1px;
+    border-radius: 3px;
+}
+
+span.comments{
+    background-image: url(images/cardList_comments.jpg);
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+}
+
+span.share{
+    background-image: url(images/cardList_share.jpg);
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+}
+
+span.collect{
+    background-image: url(images/cardList_collect.jpg);
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+}
+
+span.appreciate{
+    background-image: url(images/cardList_appreciate.jpg);
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+}
+
+/*SideBar部分*/
+/*包括 sidebar_top、sidebar_content、sidebar_footer*/
+#sidebar{
+    width: 296px;
+    position: absolute;
+    top: 63px;
+    left: 837px;
+}
+
+/*sidebar_top*/
+
+#sidebar_top{
+    background: white;
+    box-shadow: 0 0 2px 1px rgb(223,225,229);
+    width: 296px;
+    height: 174px;
+}
+
+#sidebar_top li{
+    width: 98px;
+    height: 48px;
+    background-repeat: no-repeat;
+    background-position: top;
+    display: block;
+    float: left;
+    text-align: center;
+    margin:11px 0;
+    padding: 7px 0;
+}
+
+#sidebar_top li a{
+    color: rgb(133, 144, 166)
+}
+
+#live:hover{
+    color: rgb(255, 207, 0);
+}
+#bookstore:hover{
+    color: rgb(67, 212, 128);
+}
+#desk:hover{
+    color: rgb(0, 132, 255);
+}
+#column:hover{
+    color: rgb(15, 136, 235);
+}
+#consult:hover{
+    color: rgb(84, 120, 240);
+}
+
+/*sidebar_content*/
+#sidebar_content{
+    background: white;
+    box-shadow: 0 0 2px 1px rgb(223,225,229);
+    width: 296px;
+    height: 300px;
+    margin-top: 10px;
+}
+
+#sidebar_content a{
+    color: rgb(133, 144, 166);
+    font-size: 14px;
+}
+
+#sidebar_content div{
+    height: 9px;
+}
+
+#sidebar_content li{
+    list-style: none;
+    padding: 10px 0;
+    text-indent: 10px;
+    margin: 0 1px;
+}
+
+#sidebar_content li a.question_number{
+    display: block;
+    width: 10px;
+    height: 18px;
+    background-color: rgb(243, 243, 243);
+    font-size: 10px;
+    float: right;
+    padding-top: 4px;
+    padding-right: 20px;
+    margin-right:17px;
+}
+
+#sidebar_content li:hover{
+    background-color: rgb(243, 243, 243);
+}
+
+/*sidebar_footer*/
+
+#sidebar_footer{
+    width: 296px;
+    color: rgb(133, 144, 166);
+    font-size: 13px;
+    line-height: 25px;
+    margin-top: 10px;
+}
+
+#sidebar_footer a{
+    color: rgb(133, 144, 166);
+}
+
+#sidebar_footer a:hover{
+    color: rgb(23, 81, 153);
+}

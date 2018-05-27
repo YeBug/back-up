@@ -1,40 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>Bootstrap 101 Template</title>
-
-    <!-- Bootstrap -->
+    <meta charset="UTF-8">
+    <title>Title</title>
     <link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="./css/bootstrap-theme.min.css">
     <link type="text/css" rel="stylesheet" href="bootstrapvalidator-0.4.5/src/css/bootstrapValidator.css">
     <link type="text/css" rel="stylesheet" href="./css/define.css">
-    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
-    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="bootstrapvalidator-0.4.5/src/js/bootstrapValidator.js"></script>
-    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-    <![endif]-->
-    <script type="text/javascript">
-        function checkPass(){
-            var pwd1=document.getElementById("p1").value;
-            var pwd2=document.getElementById("p2").value;
-            if(pwd1!=pwd2){
-                document.getElementById("errorpwd").style.display = "block";
-                return false;
-            }
-        }
-    </script>
 </head>
-<body>
-<body>
-<input type="password" id="p1"><br>
-重复密码：<input type="password" id="p2" onblur="return checkPass();">
-<span id="errorpwd" style="display:none;">两次输入密码不一致</span>
+<body >
+<div class="container">
+    <button id="aa" href="#" value="123" onclick="test(this.value)">aa</button>
+    <script>
+       function test(str) {
+           alert(str);
+       }
+    </script>
+
+</div>
+
 
 <script type="text/javascript" src="./jquery/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="bootstrapvalidator-0.4.5/src/js/bootstrapValidator.js"></script>

@@ -1,5 +1,11 @@
 <?php
-//session_start();
+/**
+ * Created by PhpStorm.
+ * User: h1318
+ * Date: 18/5/11
+ * Time: 11:32
+ */
+session_start();
 $connect=mysqli_connect("localhost","root","","test");
 if(!$connect){
     die("wrong:"+mysqli_connect_error());
@@ -33,7 +39,7 @@ if ($tag==1){
         if(!(mysqli_query($connect,$sql))){
             echo "<script>alert('数据插入失败');window.location.href='../register.html'</script>";
         }else{
-            echo "<script>alert('注册成功!');window.location.href='../register.html';window.location.href='../login.html'</script>";
+            echo "<script>alert('注册成功!');window.location.href='../login.html'</script>";
         }
     }
 }
@@ -65,9 +71,10 @@ elseif($tag==2){
         if(!(mysqli_query($connect,$sql))){
             echo "<script>alert('数据插入失败');window.location.href='../register.html'</script>";
         }else{
-            echo "<script>alert('注册成功!');window.location.href='../register.html';window.location.href='../login.html'</script>";
+            echo "<script>alert('注册成功!');window.location.href='../login.html'</script>";
         }
     }
 }
 
+mysqli_close($connect);
 ?>

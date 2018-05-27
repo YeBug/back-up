@@ -1,9 +1,39 @@
-.blue-white{
-    background-color: #3a34f8;
+.white{
     color: white;
 }
+.small_font{
+    color: #3b3538;
+}
+.small_a{
+    font-size: small;
+}
+.big{
+    font-size: 115%;
+}
+
 .bg-img{
     background-image: url(../images/2.jpg);
     background-repeat: no-repeat;
     background-position: right top;
+}
+.bg-color{
+    background-image: url(../images/ti.jpg);
+    background-size: cover;
+}
+.chec + label{
+    background-color: white;
+    border-radius: 5px;
+    border:1px solid #d3d3d3;
+    width:20px;
+    height:20px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 20px;
+}
+.chec:checked + label{
+    background-color: #eee;
+}
+.chec:checked + label:after{
+    content:"\2714";
 }

@@ -4,6 +4,40 @@ function delet_(){
         alert("已删除");
     }
 }
+function subma() {
+    var t=confirm("确定提交？");
+    if (t){
+        alert("已提交");
+    }
+}
+function change(){
+    var t=confirm("确定删除？");
+    if (t){
+        alert("已删除");
+    }
+}
+function reason(str)
+{
+    if (window.XMLHttpRequest)
+    {
+        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        // IE6, IE5 浏览器执行代码
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            document.getElementById("changeform").innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","php/cancle.php?tag="+str,true);
+    xmlhttp.send();
+}
 function Skey() {
     var a = $('#S_Password').val();
     //alert(a);
@@ -32,6 +66,7 @@ function Tkey() {
         return false;
     }
 }
+
 function checkPhone(){
     var phone = document.getElementById('phone').value;
     if(!(/^1[34578]\d{9}$/.test(phone))){
@@ -115,6 +150,29 @@ function show_school_time()
     xmlhttp.open("GET","php/xml.php?tag=2",true);
     xmlhttp.send();
 }
+function show_sc()
+{
+    if (window.XMLHttpRequest)
+    {
+        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        // IE6, IE5 浏览器执行代码
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            document.getElementById("sc").innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","php/xml.php?tag=14",true);
+    xmlhttp.send();
+}
+
 //回显教师信息
 function show_teacher_info()
 {
@@ -139,6 +197,28 @@ function show_teacher_info()
     xmlhttp.send();
 }
 //回显学校时间表
+function show_teacher_time()
+{
+    if (window.XMLHttpRequest)
+    {
+        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        // IE6, IE5 浏览器执行代码
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            document.getElementById("ttime").innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","php/xml.php?tag=4",true);
+    xmlhttp.send();
+}
 function show_teacher_time()
 {
     if (window.XMLHttpRequest)
@@ -300,8 +380,9 @@ function adm_sc()
     xmlhttp.send();
 }
 
-function schedule()
+function schedule(str)
 {
+
     if (window.XMLHttpRequest)
     {
         // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
@@ -319,7 +400,52 @@ function schedule()
             document.getElementById("schedule").innerHTML=xmlhttp.responseText;
         }
     }
+    xmlhttp.open("GET","php/xml.php?tag=21&day="+str,true);
+    xmlhttp.send();
+}
+
+function n_schedule()
+{
+    if (window.XMLHttpRequest)
+    {
+        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        // IE6, IE5 浏览器执行代码
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            document.getElementById("n_schedule").innerHTML=xmlhttp.responseText;
+        }
+    }
     xmlhttp.open("GET","php/xml.php?tag=11",true);
+    xmlhttp.send();
+}
+function n_detail(str)
+{
+    if (window.XMLHttpRequest)
+    {
+        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        // IE6, IE5 浏览器执行代码
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            document.getElementById("n_showclass").innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","php/detail.php?tag="+str,true);
     xmlhttp.send();
 }
 function detail(str)
@@ -344,6 +470,50 @@ function detail(str)
     xmlhttp.open("GET","php/detail.php?tag="+str,true);
     xmlhttp.send();
 }
+function e_detail(str)
+{
+    if (window.XMLHttpRequest)
+    {
+        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        // IE6, IE5 浏览器执行代码
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            document.getElementById("e_showclass").innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","php/e_detail.php?tag="+str,true);
+    xmlhttp.send();
+}
+function e_detail1(str)
+{
+    if (window.XMLHttpRequest)
+    {
+        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        // IE6, IE5 浏览器执行代码
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            document.getElementById("e_showclass1").innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","php/e_detail.php?tag="+str,true);
+    xmlhttp.send();
+}
 function s_show()
 {
     if (window.XMLHttpRequest)
@@ -366,6 +536,28 @@ function s_show()
     xmlhttp.open("GET","php/xml.php?tag=12",true);
     xmlhttp.send();
 }
+function s_show1(str)
+{
+    if (window.XMLHttpRequest)
+    {
+        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        // IE6, IE5 浏览器执行代码
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            document.getElementById("s_show1").innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","php/xml.php?tag=22&day="+str,true);
+    xmlhttp.send();
+}
 function t_show()
 {
     if (window.XMLHttpRequest)
@@ -386,5 +578,71 @@ function t_show()
         }
     }
     xmlhttp.open("GET","php/xml.php?tag=13",true);
+    xmlhttp.send();
+}
+function t_show1(str)
+{
+    if (window.XMLHttpRequest)
+    {
+        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        // IE6, IE5 浏览器执行代码
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            document.getElementById("t_show1").innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","php/xml.php?tag=23&day="+str,true);
+    xmlhttp.send();
+}
+function adm_terro()
+{
+    if (window.XMLHttpRequest)
+    {
+        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        // IE6, IE5 浏览器执行代码
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            document.getElementById("t_erro").innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","php/xml.php?tag=31",true);
+    xmlhttp.send();
+}
+function adm_serro()
+{
+    if (window.XMLHttpRequest)
+    {
+        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        // IE6, IE5 浏览器执行代码
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            document.getElementById("s_erro").innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","php/xml.php?tag=32",true);
     xmlhttp.send();
 }

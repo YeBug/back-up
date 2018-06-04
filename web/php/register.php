@@ -31,10 +31,10 @@ if ($tag==1){
     } elseif (!preg_match('/^[\w\.]+@\w+\.\w+$/i', $email)) {
         echo "<script>alert('邮箱不合法！重新填写');window.location.href='../register.html'</script>";
         //判断邮箱格式是否合法
-    }  elseif(mysqli_fetch_array(mysqli_query($connect,'select * from admin where email = "'.$email.'"'))){
+    }  elseif(mysqli_fetch_array(mysqli_query($connect,'select * from s_admin where email = "'.$email.'"'))){
         echo "<script>alert('用户名已存在');window.location.href='../register.html'</script>";
     } else{
-        $sql= 'insert into admin(email, password,tag)values("'.$email.'","'.$password.'","school")';
+        $sql= 'insert into s_admin(email, password)values("'.$email.'","'.$password.'")';
         //插入数据库
         if(!(mysqli_query($connect,$sql))){
             echo "<script>alert('数据插入失败');window.location.href='../register.html'</script>";
@@ -63,10 +63,10 @@ elseif($tag==2){
     } elseif (!preg_match('/^[\w\.]+@\w+\.\w+$/i', $email)) {
         echo "<script>alert('邮箱不合法！重新填写');window.location.href='../register.html'</script>";
         //判断邮箱格式是否合法
-    }  elseif(mysqli_fetch_array(mysqli_query($connect,'select * from admin where email = "'.$email.'"'))){
+    }  elseif(mysqli_fetch_array(mysqli_query($connect,'select * from t_admin where email = "'.$email.'"'))){
         echo "<script>alert('用户名已存在');window.location.href='../register.html'</script>";
     } else{
-        $sql= 'insert into admin(email, password,tag)values("'.$email.'","'.$password.'","teacher")';
+        $sql= 'insert into t_admin(email, password)values("'.$email.'","'.$password.'")';
         //插入数据库
         if(!(mysqli_query($connect,$sql))){
             echo "<script>alert('数据插入失败');window.location.href='../register.html'</script>";

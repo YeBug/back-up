@@ -6,6 +6,7 @@
  * Time: 15:16
  */
 session_start();
+
 $tag=$_GET['tag'];
 if ($tag=="cache"){
 

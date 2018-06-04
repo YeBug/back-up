@@ -20,9 +20,18 @@ if ($email==""){
 }elseif($result=mysqli_fetch_array(mysqli_query($connect,'select * from admin where email = "'.$email.'" and password = "'.$passwd.'"'))){
     echo "<script>alert('登录成功');</script>";
     $_SESSION['uid']=$result[0];
-    if ($result[3]=="school")echo "<script>window.location.href='../school.html'</script>";
-    elseif($result[3]=="teacher")echo "<script>window.location.href='../teacher.html'</script>";
-    elseif ($result[3]=="admin")echo "<script>window.location.href='../admin.html'</script>";
+    $_SESSION['character']="admin";
+   echo "<script>window.location.href='../admin.html'</script>";
+}elseif($result=mysqli_fetch_array(mysqli_query($connect,'select * from t_admin where email = "'.$email.'" and password = "'.$passwd.'"'))){
+    echo "<script>alert('登录成功');</script>";
+    $_SESSION['uid']=$result[0];
+    $_SESSION['character']="teacher";
+    echo "<script>window.location.href='../teacher.html'</script>";
+}elseif($result=mysqli_fetch_array(mysqli_query($connect,'select * from s_admin where email = "'.$email.'" and password = "'.$passwd.'"'))){
+    echo "<script>alert('登录成功');</script>";
+    $_SESSION['uid']=$result[0];
+    $_SESSION['character']="school";
+    echo "<script>window.location.href='../school.html'</script>";
 }elseif(!mysqli_fetch_array(mysqli_query($connect,'select * from admin where email = "'.$email.'"'))){
     echo "<script>alert('用户不存在');window.location.href='../login.html'</script>";
 }else{

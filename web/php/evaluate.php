@@ -2,22 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: h1318
- * Date: 18/5/22
- * Time: 15:40
+ * Date: 18/6/1
+ * Time: 13:30
  */
-session_start();
-$uid=$_SESSION['uid'];
+$id=$_POST['id'];
+$eval=$_POST['evaluate'];
+$grade=$_POST['grade'];
 $connect=mysqli_connect("localhost","root","","test");
 if(!$connect){
     die("wrong:"+mysqli_connect_error());
 }
-$type=$_POST['type'];
-$cid=$_POST['cid'];
-$num=$_POST['num'];
-$room=$_POST['room'];
-for($i=0;$i<sizeof($type);$i++){
-    $sql= 'insert into s_c(SID,CID,阶段,room,num,state)values("'.$uid.'","'.$cid.'","'.$type[$i].'","'.$room.'","'.$num.'",0)';
-    //插入数据库
+if(mysqli_fetch_array(mysqli_query($connect,'select * from class where id = "'.$id.'"'))){
+    $sql='update class set 评价="'.$eval.'",分数="'.$grade.'" where id="'.$id.'"';
     if(!(mysqli_query($connect,$sql))){
         echo "<script>alert('数据更新失败');window.location.href='../school.html'</script>";
     }else{

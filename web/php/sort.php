@@ -5,7 +5,7 @@
  * Date: 18/4/5
  * Time: 15:31
  */
-
+$date=date("Y-m-d");
 $teacher=array(array());
 $school=array(array());
 $Tinfo=array(array());
@@ -96,12 +96,15 @@ while ($schedule=mysqli_fetch_array($result)){
     $Sinfo[$i]["地址"]=$schedule[5];
     $i++;
 }
+
 $i=0;
 $result=mysqli_query($connect,"select * from S_C");
 while ($schedule=mysqli_fetch_array($result)){
-    $SC[$i]["SID"]=$schedule[0];
-    $SC[$i]["CID"]=$schedule[1];
-    $SC[$i]["阶段"]=$schedule[2];
+    $SC[$i]["SID"]=$schedule[1];
+    $SC[$i]["CID"]=$schedule[2];
+    $SC[$i]["阶段"]=$schedule[3];
+    $SC[$i]["scid"]=$schedule[0];
+    $SC[$i]["state"]=$schedule[6];
     $i++;
 }
 
@@ -140,7 +143,8 @@ function t_sort($arry,$tinfo,&$theory,&$model,&$program,&$contest){
 
 function get_SC($id,$sc){
     for ($i=0;$i<sizeof($sc);$i++){
-        if ($id==$sc[$i]["SID"]){
+        if ($id==$sc[$i]["scid"]){
+
             if ($sc[$i]["阶段"]==1)return "theory";
             elseif ($sc[$i]["阶段"]==2)return "model";
             elseif ($sc[$i]["阶段"]==3)return "program";
@@ -150,12 +154,26 @@ function get_SC($id,$sc){
 }
 function get_C($id,$sc){
     for ($i=0;$i<sizeof($sc);$i++){
-        if ($id==$sc[$i]["SID"]){
+        if ($id==$sc[$i]["scid"]){
             return $sc[$i]["CID"];
         }
     }
 }
 
+function get_scid($id,$sc){
+    for ($i=0;$i<sizeof($sc);$i++){
+        if ($id==$sc[$i]["SID"]&&$sc[$i]["state"]==0){
+            return $sc[$i]["scid"];
+        }
+    }
+}
+function set_scid($scid,&$sc){
+    for ($i=0;$i<sizeof($sc);$i++){
+        if ($scid==$sc[$i]["scid"]){
+            $sc[$i]["state"]=1;
+        }
+    }
+}
 //优先级函数1：
 function priority($t_id,$t_info){
     $i=0;$count=0;
@@ -249,8 +267,9 @@ for($i=1;$i<=10;$i++){                      //时间循环
         t_sort($t_id,$Tinfo,$theory,$model,$program,$contest);
         $priority=array(array());
         $priority=priority($t_id,$Tinfo);
-        $ctime=get_SC($s_id[$k],$SC);
-        $c=get_C($s_id[$k],$SC);
+        $scid=get_scid($s_id[$k],$SC);
+        $ctime=get_SC($scid,$SC);
+        $c=get_C($scid,$SC);
         $block=get_school_block($s_id[$k],$Sinfo);
         if ($ctime=="theory"){
             $result=get_block($block,$theory,$Tinfo);
@@ -262,7 +281,8 @@ for($i=1;$i<=10;$i++){                      //时间循环
                 $Class[$id]["tid"]=$tid;
                 $Class[$id]["cid"]=$c;
                 $Class[$id]["ctime"]=1;
-
+                $Class[$id]["scid"]=$scid;
+                set_scid($scid,$SC);
                 if(search($s_id[$k],$tid,$TS_schedule)==-1){
                     $TS_schedule[$TS_i]["ID"]=$TS_i;
 
@@ -292,6 +312,8 @@ for($i=1;$i<=10;$i++){                      //时间循环
                 $Class[$id]["tid"]=$tid;
                 $Class[$id]["cid"]=$c;
                 $Class[$id]["ctime"]=2;
+                $Class[$id]["scid"]=$scid;
+                set_scid($scid,$SC);
                 if(search($s_id[$k],$tid,$TS_schedule)==-1){
                     $TS_schedule[$TS_i]["ID"]=$TS_i;
 
@@ -322,6 +344,8 @@ for($i=1;$i<=10;$i++){                      //时间循环
                 $Class[$id]["tid"]=$tid;
                 $Class[$id]["cid"]=$c;
                 $Class[$id]["ctime"]=3;
+                $Class[$id]["scid"]=$scid;
+                set_scid($scid,$SC);
                 if(search($s_id[$k],$tid,$TS_schedule)==-1){
                     $TS_schedule[$TS_i]["ID"]=$TS_i;
 
@@ -352,6 +376,8 @@ for($i=1;$i<=10;$i++){                      //时间循环
                 $Class[$id]["tid"]=$tid;
                 $Class[$id]["cid"]=$c;
                 $Class[$id]["ctime"]=4;
+                $Class[$id]["scid"]=$scid;
+                set_scid($scid,$SC);
                 if(search($s_id[$k],$tid,$TS_schedule)==-1){
                     $TS_schedule[$TS_i]["ID"]=$TS_i;
 
@@ -416,17 +442,20 @@ for($i=1;$i<=10;$i++){
         t_sort($t_id,$Tinfo,$theory,$model,$program,$contest);
         $priority=array(array());
         $priority=use_priority($teacher);
-        $ctime=get_SC($s_id[$j],$SC);
-        $c=get_C($s_id[$j],$SC);
+        $scid=get_scid($s_id[$j],$SC);
+        $ctime=get_SC($scid,$SC);
+        $c=get_C($scid,$SC);
         if ($ctime=="theory"){
             $free=  get_free($theory,$priority);
             if ($free!=-1){
                 setT_0($free,$i,$teacher);
                 setS_0($s_id[$j],$i,$school);
                 $Class[$id]["id"]=$id;
-                $Class[$id]["tid"]=$tid;
+                $Class[$id]["tid"]=$free;
                 $Class[$id]["cid"]=$c;
                 $Class[$id]["ctime"]=1;
+                $Class[$id]["scid"]=$scid;
+                set_scid($scid,$SC);
                 if(search($s_id[$j],$free,$TS_schedule)==-1){
                     $TS_schedule[$TS_i]["ID"]=$TS_i;
                     $TS_schedule[$TS_i]["SID"]=$s_id[$j];
@@ -451,9 +480,11 @@ for($i=1;$i<=10;$i++){
                 setT_0($free,$i,$teacher);
                 setS_0($s_id[$j],$i,$school);
                 $Class[$id]["id"]=$id;
-                $Class[$id]["tid"]=$tid;
+                $Class[$id]["tid"]=$free;
                 $Class[$id]["cid"]=$c;
                 $Class[$id]["ctime"]=2;
+                $Class[$id]["scid"]=$scid;
+                set_scid($scid,$SC);
                 if(search($s_id[$j],$free,$TS_schedule)==-1){
                     $TS_schedule[$TS_i]["ID"]=$TS_i;
 
@@ -479,9 +510,11 @@ for($i=1;$i<=10;$i++){
                 setT_0($free,$i,$teacher);
                 setS_0($s_id[$j],$i,$school);
                 $Class[$id]["id"]=$id;
-                $Class[$id]["tid"]=$tid;
+                $Class[$id]["tid"]=$free;
                 $Class[$id]["cid"]=$c;
                 $Class[$id]["ctime"]=3;
+                $Class[$id]["scid"]=$scid;
+                set_scid($scid,$SC);
                 if(search($s_id[$j],$free,$TS_schedule)==-1){
                     $TS_schedule[$TS_i]["ID"]=$TS_i;
 
@@ -507,9 +540,11 @@ for($i=1;$i<=10;$i++){
                 setT_0($free,$i,$teacher);
                 setS_0($s_id[$j],$i,$school);
                 $Class[$id]["id"]=$id;
-                $Class[$id]["tid"]=$tid;
+                $Class[$id]["tid"]=$free;
                 $Class[$id]["cid"]=$c;
                 $Class[$id]["ctime"]=4;
+                $Class[$id]["scid"]=$scid;
+                set_scid($scid,$SC);
                 if(search($s_id[$j],$free,$TS_schedule)==-1){
                     $TS_schedule[$TS_i]["ID"]=$TS_i;
                     $TS_schedule[$TS_i]["SID"]=$s_id[$j];
@@ -530,16 +565,24 @@ for($i=1;$i<=10;$i++){
     }
 }
 foreach ($TS_schedule as $key1=>$link){
-    mysqli_query($connect,'insert into s_t(ID,SID,TID,MonM,MonA,TueM,TueA,WedM,WedA,ThuM,ThuA,FriM,FriA) values
-("'.$link['ID'].'","'.$link['SID'].'","'.$link['TID'].'","'.$link[1].'","'.$link[2].'","'.$link[3].'","'.$link[4].'","'.$link[5].'","'.$link[6].'","'.$link[7].'","'.$link[8].'","'.$link[9].'","'.$link[10].'")');
+    mysqli_query($connect,'insert into s_t(daytime,ID,SID,TID,MonM,MonA,TueM,TueA,WedM,WedA,ThuM,ThuA,FriM,FriA) values
+("'.$date.'","'.$link['ID'].'","'.$link['SID'].'","'.$link['TID'].'","'.$link[1].'","'.$link[2].'","'.$link[3].'","'.$link[4].'","'.$link[5].'","'.$link[6].'","'.$link[7].'","'.$link[8].'","'.$link[9].'","'.$link[10].'")');
 }
 foreach ($Class as $key1=>$link){
    $b_id=$link['id'];
    $b_tid=$link['tid'];
    $b_cid=$link['cid'];
    $b_ctime=$link['ctime'];
-   mysqli_query($connect,'insert into class(id,tid,cid,ctime)VALUES ("'.$b_id.'","'.$b_tid.'","'.$b_cid.'","'.$b_ctime.'")');
+    $b_scid=$link['scid'];
+   mysqli_query($connect,'insert into class(daytime,id,tid,cid,ctime,scid)VALUES ("'.$date.'","'.$b_id.'","'.$b_tid.'","'.$b_cid.'","'.$b_ctime.'","'.$b_scid.'")');
+}
+foreach ($SC as $key1=>$link){
+    if(mysqli_fetch_array(mysqli_query($connect,'select * from class where scid="'.$link['scid'].'"'))){
+        mysqli_query($connect,'update s_c set state="'.$link['state'].'" where ID="'.$link['scid'].'"');
+    }
+
 }
 mysqli_close($connect);
 echo "<script>alert('排课完成！');window.location.href='../admin.html'</script>";
+
 ?>

@@ -58,6 +58,9 @@
                                 <li>
                                     <a href="#panel-2-2" data-toggle="tab" onclick="adm_ttime()">教师时间安排</a>
                                 </li>
+                                <li>
+                                    <a href="#panel-2-3" data-toggle="tab" onclick="adm_terro()">教师反馈信息</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -75,6 +78,9 @@
                                 <li>
                                     <a href="#panel-3-3" data-toggle="tab" onclick="adm_sc()">学校选课</a>
                                 </li>
+                                <li>
+                                    <a href="#panel-3-4" data-toggle="tab" onclick="adm_serro()">学校反馈信息</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -86,15 +92,14 @@
                                     <a href="#panel-4-1" data-toggle="tab" >排课设置</a>
                                 </li>
                                 <li>
-                                    <a href="#panel-4-2" data-toggle="tab" onclick="schedule()">排课结果</a>
+                                    <a href="#panel-4-2" data-toggle="tab">历史排课查询</a>
+                                </li>
+                                <li>
+                                    <a href="#panel-4-3" data-toggle="tab" onclick="n_schedule()">本周排课</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li >
-                        <a href="#panel-5" data-toggle="tab">#</a>
-                    </li>
-                </ul>
             </div>
             <div class="list-group-item">
                 <a class="list-group-item" href="#">#</a>
@@ -147,6 +152,19 @@
                 <div id="show_ttime">
                 </div>
             </div>
+            <div class="tab-pane " id="panel-2-3">
+                <div id="t_erro">
+                </div>
+                <div class="modal fade" id="erro0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div id="e_showclass">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="tab-pane " id="panel-3-1">
                 <div id="check_school">
                 </div>
@@ -158,6 +176,19 @@
             <div class="tab-pane " id="panel-3-3">
                 <div id="show_sc">
                 </div>
+            </div>
+            <div class="tab-pane " id="panel-3-4">
+                <div id="s_erro">
+                </div>
+                <div class="modal fade" id="erro1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div id="e_showclass1">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
             <div class="tab-pane " id="panel-4-1">
                 <div class="col-md-2"></div>
@@ -190,6 +221,9 @@
 
             </div>
             <div class="tab-pane " id="panel-4-2">
+                <label>选择课程日期</label>
+                <input type="date" id="cdate" name="cdate" onblur="schedule(this.value)">
+                <button class="btn btn-default">确定</button>
             <div id="schedule">
 
             </div>
@@ -197,6 +231,20 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div id="showclass">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane " id="panel-4-3">
+                <div id="n_schedule">
+
+                </div>
+                <div class="modal fade" id="choose11" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div id="n_showclass">
 
                             </div>
                         </div>

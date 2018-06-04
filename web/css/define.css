@@ -1,6 +1,10 @@
 .white{
     color: white;
 }
+.form_font{
+    color: black;
+    font-size: 17px;
+}
 .small_font{
     color: #3b3538;
 }
